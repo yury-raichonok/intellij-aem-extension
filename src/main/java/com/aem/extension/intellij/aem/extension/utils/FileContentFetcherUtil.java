@@ -8,6 +8,11 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.IOUtils;
 
+/**
+ * Utility class for fetching files templates from resources.
+ *
+ * @author Yury Raichonak
+ */
 public final class FileContentFetcherUtil {
 
   private static final Logger LOGGER = Logger.getInstance(FileContentFetcherUtil.class);
@@ -15,6 +20,11 @@ public final class FileContentFetcherUtil {
   private FileContentFetcherUtil() {
   }
 
+  /**
+   * @param templatePath relative path to file template under 'resources' folder;
+   * @return content of file as String;
+   * If IOException occurs, or resource by path not found, returns empty string;
+   */
   public static String getFileContentFromTemplate(String templatePath) {
     String fileContent;
     try (InputStream resourceAsStream = FileContentFetcherUtil.class.getClassLoader()

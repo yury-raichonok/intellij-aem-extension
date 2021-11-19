@@ -7,15 +7,12 @@ import static com.aem.extension.intellij.aem.extension.component.AemComponentDia
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.ui.ValidationInfo;
 import com.intellij.psi.PsiDirectory;
-import com.intellij.ui.components.JBLabel;
 import com.intellij.util.ui.JBUI;
 import com.intellij.util.ui.JBUI.Borders;
 import com.twelvemonkeys.lang.StringUtil;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Label;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -23,6 +20,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Client Library Dialog Wrapper Class.
+ * <p>
+ * This class is responsible for rendering the UI to generate Client Library for AEM component.
+ * </p>
+ *
+ * @author Yury Raichonak
+ */
 public class AemClientLibDialogWrapper extends DialogWrapper {
 
   private static final String EMPTY_CATEGORIES_VALIDATION_MESSAGE = "Client lib categories can't be empty";
@@ -50,6 +55,9 @@ public class AemClientLibDialogWrapper extends DialogWrapper {
     setTitle(CLIENT_LIB_DIALOG_TITLE);
   }
 
+  /**
+   * @return Swing panel with field and checkboxes;
+   */
   @Override
   protected @Nullable JComponent createCenterPanel() {
     JPanel componentPanel = new JPanel(new GridBagLayout());
@@ -99,6 +107,11 @@ public class AemClientLibDialogWrapper extends DialogWrapper {
     return componentPanel;
   }
 
+  /**
+   * Method for validation of specified client library categories;
+   * Also validate if client library of current AEM component already exists;
+   * @return Validation info if client library categories is not valid, or client library for this component already exists;
+   */
   @Override
   protected ValidationInfo doValidate() {
     if (StringUtil.isEmpty(categories.getText())) {
@@ -110,18 +123,30 @@ public class AemClientLibDialogWrapper extends DialogWrapper {
     return null;
   }
 
+  /**
+   * @return specified client library categories as string;
+   */
   public String getCategories() {
     return categories.getText();
   }
 
+  /**
+   * @return true if Generate CSS file checkbox is selected, otherwise returns false;
+   */
   public boolean getGenerateCssFile() {
     return generateCssFile.isSelected();
   }
 
+  /**
+   * @return true if Generate LESS file checkbox is selected, otherwise returns false;
+   */
   public boolean getGenerateLessFile() {
     return generateLessFile.isSelected();
   }
 
+  /**
+   * @return true if Generate JS file checkbox is selected, otherwise returns false;
+   */
   public boolean getGenerateJsFile() {
     return generateJsFile.isSelected();
   }

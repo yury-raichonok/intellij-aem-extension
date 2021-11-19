@@ -8,7 +8,6 @@ import com.intellij.util.ui.JBUI;
 import com.intellij.util.ui.JBUI.Borders;
 import com.twelvemonkeys.lang.StringUtil;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JCheckBox;
@@ -17,6 +16,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * AEM Component Dialog Wrapper Class.
+ * <p>
+ * This class is responsible for rendering the UI to generate AEM component.
+ * </p>
+ *
+ * @author Yury Raichonak
+ */
 public class AemComponentDialogWrapper extends DialogWrapper {
 
   private static final String COMPONENT_GROUP = "Component group";
@@ -52,6 +59,9 @@ public class AemComponentDialogWrapper extends DialogWrapper {
     setTitle(COMPONENT_DIALOG_TITLE);
   }
 
+  /**
+   * @return Swing panel with fields and checkboxes;
+   */
   @Override
   protected @Nullable JComponent createCenterPanel() {
     JPanel componentPanel = new JPanel(new GridBagLayout());
@@ -111,6 +121,10 @@ public class AemComponentDialogWrapper extends DialogWrapper {
     return componentPanel;
   }
 
+  /**
+   * Method for validation of specified component title and group;
+   * @return Validation info if component title and/or group are not valid;
+   */
   @Override
   protected ValidationInfo doValidate() {
     if (StringUtil.isEmpty(componentTitle.getText())) {
@@ -125,32 +139,54 @@ public class AemComponentDialogWrapper extends DialogWrapper {
     return null;
   }
 
+  /**
+   * @param text on label
+   * @return Swing label component with applied styles;
+   */
   private JComponent createLabel(String text) {
     var label = new JBLabel(text);
     label.setBorder(Borders.empty(TOP_AND_BOTTOM_MARGIN, LEFT_AND_RIGHT_MARGIN));
     return label;
   }
 
+  /**
+   * @return specified component title as string;
+   */
   public String getComponentTitle() {
     return componentTitle.getText();
   }
 
+  /**
+   * @return specified component group name as string;
+   */
   public String getComponentGroupName() {
     return componentGroup.getText();
   }
 
+  /**
+   * @return true if Generate dialog.xml file checkbox is selected, otherwise returns false;
+   */
   public boolean getGenerateDialogXmlFile() {
     return generateDialogXmlFile.isSelected();
   }
 
+  /**
+   * @return true if Generate _cq_dialog.xml file checkbox is selected, otherwise returns false;
+   */
   public boolean getGenerateCqDialogXmlFile() {
     return generateCqDialogXmlFile.isSelected();
   }
 
+  /**
+   * @return true if Generate _cq_editConfig.xml file checkbox is selected, otherwise returns false;
+   */
   public boolean getGenerateCqEditConfigXmlFile() {
     return generateCqEditConfigXmlFile.isSelected();
   }
 
+  /**
+   * @return true if Generate _cq_template.xml file checkbox is selected, otherwise returns false;
+   */
   public boolean getGenerateCqTemplateXmlFile() {
     return generateCqTemplateXmlFile.isSelected();
   }

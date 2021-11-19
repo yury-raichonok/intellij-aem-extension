@@ -20,6 +20,13 @@ import com.intellij.psi.PsiFileFactory;
 import java.util.function.Consumer;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Client Library Generation Action Class.
+ * <p>
+ * This class generates clientLibrary folder and developer-selected files from template for AEM component.
+ * </p>
+ * @author Yury Raichonak
+ */
 public class AemClientLibAction extends CreateElementActionBase {
 
   public static final String CLIENT_LIBRARY = "clientLibrary";
@@ -42,6 +49,11 @@ public class AemClientLibAction extends CreateElementActionBase {
   private boolean generateLessFile;
   private boolean generateJsFile;
 
+  /**
+   * @param project current project;
+   * @param directory of AEM component;
+   * @param elementsConsumer Psi elements;
+   */
   @Override
   protected void invokeDialog(@NotNull Project project, @NotNull PsiDirectory directory,
       @NotNull Consumer<PsiElement[]> elementsConsumer) {
@@ -58,6 +70,11 @@ public class AemClientLibAction extends CreateElementActionBase {
     }
   }
 
+  /**
+   * @param categories of component's client library;
+   * @param directory of AEM component;
+   * @return new PsiElement;
+   */
   @Override
   protected PsiElement @NotNull [] create(@NotNull String categories, PsiDirectory directory) {
     Application application = ApplicationManager.getApplication();
@@ -68,16 +85,29 @@ public class AemClientLibAction extends CreateElementActionBase {
     return new PsiElement[0];
   }
 
+  /**
+   * @return constant error title;
+   */
   @Override
   protected String getErrorTitle() {
     return ERROR_TITLE;
   }
 
+  /**
+   * @param directory of AEM component;
+   * @param newName name of action;
+   * @return constant name of action;
+   */
   @Override
   protected String getActionName(PsiDirectory directory, String newName) {
     return ACTION_NAME;
   }
 
+  /**
+   * Method for generation under newly created directory;
+   * @param componentTitle title of AEM component, required for files generation;
+   * @param directory of client library;
+   */
   private void generateRequiredFiles(String componentTitle, PsiDirectory directory) {
     PsiFileFactory factory = PsiFileFactory.getInstance(currentProject);
 
