@@ -1,0 +1,33 @@
+<idea-plugin>
+    <id>com.aem.extension.intellij.aem.extension</id>
+    <name>AEM Extension</name>
+    <vendor email="yury.raichonak@gmail.com">Yury Raichonak</vendor>
+    <version>1.0.0</version>
+
+    <description>
+        <![CDATA[
+            Intellij AEM Extension plugin, that helps you to create AEM components and Client libraries.
+        ]]>
+    </description>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <action id="aem.shortcut.createComponent"
+          class="com.aem.extension.intellij.aem.extension.component.AemComponentAction"
+          text="AEM Component" description="Creates all files required to define an AEM component">
+            <add-to-group group-id="NewGroup" anchor="last"/>
+        </action>
+        <action id="aem.shortcut.createClientLib"
+          class="com.aem.extension.intellij.aem.extension.clientlib.AemClientLibAction"
+          text="AEM Client Lib" description="Creates all files required to define an AEM client library">
+            <add-to-group group-id="NewGroup" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
