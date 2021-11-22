@@ -10,12 +10,11 @@
         ]]>
     </description>
 
-    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
-         on how to target different products -->
+    <depends>com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
+        <implicitUsageProvider implementation="com.aem.extension.intellij.aem.extension.usage.AemClassUsageProvider" />
     </extensions>
 
     <actions>
